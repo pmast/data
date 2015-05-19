@@ -1,0 +1,10 @@
+module.exports = {
+	influx: {
+		host : ,
+		port : ,
+		protocol : ,
+		username : ,
+		password : ,
+		database : 
+	}
+};
