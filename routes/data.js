@@ -9,13 +9,27 @@ router.get('/', function(req, res, next) {
 
 router.post('/:user/', function(req, res, next) {
   var point = {};
+
+  var type = req.body.type;
+  delete req.body.type;
+
   if (req.body.time){
     point.time = req.body.time;
+    delete req.body.time;
   } else {
     point.time = new Date();
   }
+
   point.value = req.body.value;
-  var series = req.params.user + '.' + req.body.type;
+  delete req.body.value;
+
+  //adding additional fields to point
+  Object.keys(req.body).forEach(function(key) {
+    point[key] = req.body[key];
+  });
+  console.log(point);
+
+  var series = req.params.user + '.' + type;
 
   req.db.writePoint(series, point, function(err){
     if (err) throw err;
