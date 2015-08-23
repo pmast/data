@@ -27,7 +27,6 @@ router.post('/:user/', function(req, res, next) {
   Object.keys(req.body).forEach(function(key) {
     point[key] = req.body[key];
   });
-  console.log(point);
 
   var series = req.params.user + '.' + type;
 
